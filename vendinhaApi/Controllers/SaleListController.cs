@@ -43,7 +43,7 @@ namespace vendinhaApi.Controllers
         [HttpPut]
         public async Task<ActionResult<List<SaleList>>> UpdateSaleList(SaleList request)
         {
-            var dbSaleList = await _context.SaleList.Where(a => a.ClientId == request.ClientId).FirstAsync();
+            var dbSaleList = await _context.SaleList.Where(a => a.SaleListId == request.SaleListId).FirstAsync();
 
             if (dbSaleList == null)
             {
