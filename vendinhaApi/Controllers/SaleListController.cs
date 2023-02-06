@@ -32,6 +32,14 @@ namespace vendinhaApi.Controllers
             return Ok(dbSaleList);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<List<Client>>> AddClient(SaleList list)
+        {
+            _context.SaleList.Add(list);
+            await _context.SaveChangesAsync();
+            return Ok(list);
+        }
+
         [HttpPut]
         public async Task<ActionResult<List<SaleList>>> UpdateSaleList(SaleList request)
         {
