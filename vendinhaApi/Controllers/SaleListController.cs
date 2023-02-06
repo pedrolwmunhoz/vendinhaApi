@@ -33,7 +33,7 @@ namespace vendinhaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Client>>> AddClient(SaleList list)
+        public async Task<ActionResult<List<SaleList>>> AddClient(SaleList list)
         {
             _context.SaleList.Add(list);
             await _context.SaveChangesAsync();
@@ -57,6 +57,21 @@ namespace vendinhaApi.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(dbSaleList);
+        }
+
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult<List<SaleList>>> DeleteClient(int id)
+        {
+            var dbList = await _context.SaleList.FindAsync(id);
+            if (dbList == null)
+            {
+                return NotFound();
+            }
+            _context.SaleList.Remove(dbList);
+            await _context.SaveChangesAsync();
+            return Ok(dbList);
         }
 
     }
